@@ -1,0 +1,63 @@
+<div class="container" ng-controller="songsController">
+	<div class="section">
+		<div class="row">
+
+			<!-- Currently playing window -->
+			<div class="col s12 m5 l5 right">
+				<div class="card">
+
+					<div class="card-image video-container no-controls" id="yt-player">
+						<div id="player"></div>
+					</div>
+
+					<div class="card-content player-content">
+
+						<div class="media-controls center">
+							<a id="control-prev" class="waves-effect waves-light btn"><i class="mdi-av-skip-previous"></i></a>
+							<a id="control-play" class="waves-effect waves-light btn"><i class="mdi-av-play-arrow"></i></a>
+							<a id="control-next" class="waves-effect waves-light btn"><i class="mdi-av-skip-next"></i></a>
+						</div>
+
+						<div class="progress progress-container">
+							<div class="determinate" id="progress-bar" style="width: 0%"></div>
+						</div>
+
+						<div id="volume-wrapper">
+							<a ng-hide="true" id="control-mute" class="waves-effect waves-teal btn-flat"><i class="mdi-av-volume-up small"></i></a>
+							<p class="range-field">
+								<input id="volume-control" type="range" min="0" max="100" value="70"/>
+							</p>
+						</div>
+
+					</div>
+
+					<div class="card-action">
+						<a href="#suggest" id="suggest-song" class="waves-effect waves-teal btn-flat">Suggest song</a>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Playlist window cards -->
+			<div class="col s12 m7 l7">
+				<div class="card" ng-repeat="song in songs">
+					<div class="card-content">
+						<h5 class="truncate grey-text text-darken-4">{{ song.title }}</h5>
+						<p>Suggested by {{ song.suggester }}</p>
+					</div>
+					<div class="card-action">
+						<a href="#!">like <i class="mdi-action-thumb-up"></i></a>
+						<a href="#!">dislike <i class="mdi-action-thumb-down"></i></a>
+						<div class="right">
+							<span class="likes blue-text">+{{ song.likes }}</span>
+							<span class="grey-text text-lighten-1"> | </span>
+							<span class="dislikes red-text text-darken-2">-{{ song.dislikes }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container" ng-controller="searchController" style="width: 100% !important">
+	<div class="section">
+		<div class="row">
+
+			<div class="col s12 m12 l8">
+				<h4>Search below for the song you want</h4>
+
+				<div class="input-field">
+					<i class="mdi-action-search prefix"></i>
+					<input type="text" id="search-song">
+					<label for="search-song">Song title</label>
+				</div>
+
+				<div class="card" ng-repeat="result in results">
+
+					<div class="card-content">
+						<h5 class="truncate grey-text text-darken-4">{{ result.snippet.title }}</h5>
+						<p>Uploaded by {{ result.snippet.channelTitle }}</p>
+					</div>
+
+				</div>
+
+			</div>
+			
+		</div>
+	</div>
+</div>

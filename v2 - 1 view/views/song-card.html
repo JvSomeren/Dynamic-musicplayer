@@ -1,0 +1,17 @@
+<div class="col s12 m7 l7" ng-controller="songsController">
+	<div class="card" ng-repeat="song in songs">
+		<div class="card-content">
+			<h5 class="truncate grey-text text-darken-4">{{ song.title }}</h5>
+			<p>Suggested by {{ song.suggester }}</p>
+		</div>
+		<div class="card-action">
+			<a href="#!">like <i class="mdi-action-thumb-up"></i></a>
+			<a href="#!">dislike <i class="mdi-action-thumb-down"></i></a>
+			<div class="right">
+				<span class="likes blue-text">+{{ song.likes }}</span>
+				<span class="grey-text text-lighten-1"> | </span>
+				<span class="dislikes red-text text-darken-2">-{{ song.dislikes }}</span>
+			</div>
+		</div>
+	</div>
+</div>

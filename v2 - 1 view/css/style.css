@@ -1,0 +1,48 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.content {
+	flex: 1;
+}
+
+.container {
+	width: 90% !important;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.collection-item {
+	height: auto;
+}
+
+.player-content {
+	padding-top: 10px !important;
+}
+
+.progress-container {
+	margin: 1rem 0 0.5rem 0 !important;
+}
+
+#control-mute {
+	padding: 0 0.5rem !important;
+}
+
+#volume-control {
+	width: 100% !important;
+}
+
+.card-action {
+	padding: 10px 20px !important;
+}
