@@ -6,6 +6,7 @@
  * Made By MaterializeCSS.com
  */
 
+/* index.html */
 body {
 	display: flex;
 	min-height: 100vh;
@@ -20,6 +21,7 @@ body {
 	width: 90% !important;
 }
 
+/*   */
 .icon-block {
   padding: 0 15px;
 }
@@ -46,3 +48,11 @@ body {
 .card-action {
 	padding: 10px 20px !important;
 }
+
+/* suggest.html */
+.divider-results {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* https://docs.angularjs.org/api/ng/directive/ngRepeat <= Animation */
