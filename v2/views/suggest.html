@@ -14,10 +14,10 @@
 						</div>
 					</div>
 					<div class="divider"></div>
-					<div class="card-content">
-					
-						<div ng-repeat="result in results">
-							<span class="truncate grey-text text-darken-4 animate-repeat">{{ result.snippet.title }}</span>
+					<div class="card-content search-container">
+						
+						<div class="search-results" ng-repeat="result in results" ng-click="onResultSelect(result.id.videoId, result.snippet.title)">
+							<span class="truncate grey-text text-darken-4 animate-repeat title">{{ result.snippet.title }}</span>
 							<p class="truncate animate-repeat">Uploaded by {{ result.snippet.channelTitle }}</p>
 							<div class="divider divider-results animate-repeat" ng-if="!$last"></div>
 						</div>
@@ -25,8 +25,21 @@
 					</div>
 				</div>
 				
-				<div id="suggest-container">{{ searchResults }}</div>
-				<div id="search-container"></div>
+				<div class="card" ng-repeat="song in songs">
+					<div class="card-content song-info">
+						<span class="truncate grey-text text-darken-4 song-title">{{ song.title }}</span>
+						<p>Suggested by {{ song.suggester }}</p>
+					</div>
+					<div class="card-action">
+						<a href="#!">like <i class="mdi-action-thumb-up"></i></a>
+						<a href="#!">dislike <i class="mdi-action-thumb-down"></i></a>
+						<div class="right">
+							<span class="likes blue-text">+{{ song.likes }}</span>
+							<span class="grey-text text-lighten-1"> | </span>
+							<span class="dislikes red-text text-darken-2">-{{ song.dislikes }}</span>
+						</div>
+					</div>
+				</div>
 				
 			</div>
 

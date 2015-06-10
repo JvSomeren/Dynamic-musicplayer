@@ -50,9 +50,43 @@ body {
 }
 
 /* suggest.html */
+.search-container {
+	padding: 0 !important;
+}
+
+.search-results {
+	padding-top: 10px;
+}
+
+.search-results:first-child {
+	padding-top: 15px;
+}
+
+.search-results:last-child {
+	padding-bottom: 15px;
+}
+
+.search-results {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.search-results:hover {
+	background-color: #EEEEEE;
+}
+
 .divider-results {
 	margin-top: 10px;
-	margin-bottom: 10px;
+}
+
+.song-info {
+	padding: 10px 20px !important;
+}
+
+.song-title {
+	font-size: 120%;
+	font-weight: 500;
 }
 
 /* https://docs.angularjs.org/api/ng/directive/ngRepeat <= Animation */
+

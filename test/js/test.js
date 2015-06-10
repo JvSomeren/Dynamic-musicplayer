@@ -3,8 +3,15 @@
 
 // Helper function to display JavaScript value on HTML page.
 function showResponse(response) {
-    var responseString = JSON.stringify(response, '', 2);
-    document.getElementById('response').innerHTML += responseString;
+	console.log(response.items);
+	var responseString = JSON.stringify(response, '', 2);
+	document.getElementById('response').innerHTML += responseString;
+
+	var scope = angular.element($("#maincontainer")).scope();
+	scope.$apply(function() {
+		scope.searchResults = responseString;
+		console.log(responseString.kind);
+	});
 }
 
 // Called automatically when JavaScript client library is loaded.
@@ -42,3 +49,7 @@ function search() {
 function onSearchResponse(response) {
     showResponse(response);
 }
+
+$("#linkDiv").click(function() {
+	alert("clicked");
+});

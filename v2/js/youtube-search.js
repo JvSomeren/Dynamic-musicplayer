@@ -13,18 +13,19 @@ function search(searchRequest) {
 		q: searchRequest
 	});
 	
-	request.execute(function(response) {
-		var responseString = JSON.stringify(response, '', 2);
+	request.execute(onSearchResponse);
+}
+
+function onSearchResponse(response) {
 		var scope = angular.element($("#searchContainer")).scope();
 		
 		scope.$apply(function() {
-			scope.searchResults = responseString;
-			console.log(scope.searchResults);
+			scope.searchResults = response;
 			scope.makeSearchAnArray();
 			console.log(scope.results);
 		});
-	});
 }
+
 /*
 {
   "kind": "youtube#searchListResponse",
