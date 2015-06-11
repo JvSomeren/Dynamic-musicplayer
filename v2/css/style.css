@@ -88,5 +88,9 @@ body {
 	font-weight: 500;
 }
 
+.pointer-cursor {
+	cursor: pointer;
+}
+
 /* https://docs.angularjs.org/api/ng/directive/ngRepeat <= Animation */
 

@@ -1,6 +1,16 @@
 app.controller('songsController', function($scope, $http) {
-	$http.get("http://localhost/barmuziek/v2/queueFetcher.php?pid=12345")
-    .success(function (response) {$scope.songs = response.records;});
+	$scope.getQueue = function() {
+		$http.get("http://localhost/barmuziek/v2/queueFetcher.php?pid=12345")
+			.success(function (response) {$scope.songs = response.records;});
+	}
+	
+	$scope.getQueue();
+	
+	var tag = document.createElement('script');
+
+	tag.src = "https://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 	
 	$('.modal-trigger').leanModal();
 	
@@ -28,5 +38,43 @@ app.controller('songsController', function($scope, $http) {
 				break;
 		}
 	});
+	
+	$scope.addLike = function(id) {
+		var suggestion = $.param({
+			id: id
+		});
+		
+		var request = {
+			method: 'POST',
+			url: 'http://localhost/barmuziek/v2/addLike.php',
+			data: suggestion,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}
+		$http(request).success(function() {
+			$scope.getQueue();
+		})
+		.error(function() {
+			console.log("Error when liking");
+		});
+	}
+	
+	$scope.addDislike = function(id) {
+		var suggestion = $.param({
+			id: id
+		});
+		
+		var request = {
+			method: 'POST',
+			url: 'http://localhost/barmuziek/v2/addDislike.php',
+			data: suggestion,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}
+		$http(request).success(function() {
+			$scope.getQueue();
+		})
+		.error(function() {
+			console.log("Error when disliking");
+		});
+	}
 
 });

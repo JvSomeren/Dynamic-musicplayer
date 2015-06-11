@@ -41,13 +41,13 @@
 			<!-- Playlist window cards -->
 			<div class="col s12 m7 l7">
 				<div class="card" ng-repeat="song in songs">
-					<div class="card-content">
-						<h5 class="truncate grey-text text-darken-4">{{ song.title }}</h5>
+					<div class="card-content song-info">
+						<span class="truncate grey-text text-darken-4 song-title">{{ song.title }}</span>
 						<p>Suggested by {{ song.suggester }}</p>
 					</div>
 					<div class="card-action">
-						<a href="#!">like <i class="mdi-action-thumb-up"></i></a>
-						<a href="#!">dislike <i class="mdi-action-thumb-down"></i></a>
+						<a class="pointer-cursor" ng-click="addLike(song.id)">like <i class="mdi-action-thumb-up"></i></a>
+						<a class="pointer-cursor" ng-click="addDislike(song.id)">dislike <i class="mdi-action-thumb-down"></i></a>
 						<div class="right">
 							<span class="likes blue-text">+{{ song.likes }}</span>
 							<span class="grey-text text-lighten-1"> | </span>

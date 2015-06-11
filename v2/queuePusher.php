@@ -1,17 +1,7 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "ssr";
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
-	}
+	include 'database.php';
 
 	if(isset($_SESSION['PID']) && !empty($_SESSION['PID'])) {
 		$PID = $_SESSION['PID'];

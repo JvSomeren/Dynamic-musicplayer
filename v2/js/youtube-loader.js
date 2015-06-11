@@ -25,7 +25,7 @@ var i;
 //plays the video, gets the video duration and starts the progress bar
 function onPlayerReady(event) {
 	event.target.setVolume(70);
-	event.target.playVideo();
+	//event.target.playVideo();
 	//event.target.pauseVideo();
 	player.duration = player.getDuration();
 	i = setInterval(percentageWatched, 1000);
