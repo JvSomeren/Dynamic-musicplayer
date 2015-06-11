@@ -1,6 +1,7 @@
 app.controller('searchController', function($scope, $http) {
+	var path = 'http://localhost/barmuziek/v2/';
 	$scope.getQueue = function() {
-		$http.get("http://localhost/barmuziek/v2/queueFetcher.php?pid=12345")
+		$http.get(path + "queueFetcher.php?pid=12345")
 			.success(function (response) {$scope.songs = response.records;});
 	}
 	
@@ -44,7 +45,7 @@ app.controller('searchController', function($scope, $http) {
 		
 		var request = {
 			method: 'POST',
-			url: 'http://localhost/barmuziek/v2/queuePusher.php',
+			url: path + 'queuePusher.php',
 			data: suggestion,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}
@@ -65,7 +66,7 @@ app.controller('searchController', function($scope, $http) {
 		
 		var request = {
 			method: 'POST',
-			url: 'http://localhost/barmuziek/v2/addLike.php',
+			url: path + 'addLike.php',
 			data: suggestion,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}
@@ -84,7 +85,7 @@ app.controller('searchController', function($scope, $http) {
 		
 		var request = {
 			method: 'POST',
-			url: 'http://localhost/barmuziek/v2/addDislike.php',
+			url: path + 'addDislike.php',
 			data: suggestion,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}

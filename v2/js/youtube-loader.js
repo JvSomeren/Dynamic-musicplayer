@@ -124,7 +124,7 @@ function playPauseControl() {
 
 //Loads in the next video when the next button is pressed
 function nextControl() {
-	var nextVideo = 'yUIDTxeQmnc';
+	
 	player.loadVideoById(nextVideo, "medium");
 	clearInterval(i);
 	i = setInterval(percentageWatched, 1000);
