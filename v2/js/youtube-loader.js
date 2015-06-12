@@ -124,8 +124,15 @@ function playPauseControl() {
 
 //Loads in the next video when the next button is pressed
 function nextControl() {
+	var scope = angular.element($("#player-container")).scope();
+		
+	scope.$apply(function() {
+		var nextVideo = scope.songs[0].YTID;
+		player.loadVideoById(nextVideo, "medium");
+		scope.removeTopFromQueue(scope.songs[0].id);
+	});
+
 	
-	player.loadVideoById(nextVideo, "medium");
 	clearInterval(i);
 	i = setInterval(percentageWatched, 1000);
 }

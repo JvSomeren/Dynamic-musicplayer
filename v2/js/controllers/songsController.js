@@ -7,6 +7,9 @@ app.controller('songsController', function($scope, $http) {
 	
 	$scope.getQueue();
 	
+	var i;
+	i = setInterval($scope.getQueue, 10000);
+	
 	var tag = document.createElement('script');
 
 	tag.src = "https://www.youtube.com/iframe_api";
@@ -39,6 +42,25 @@ app.controller('songsController', function($scope, $http) {
 				break;
 		}
 	});
+	
+	$scope.removeTopFromQueue = function(id) {
+		var suggestion = $.param({
+			id: id
+		});
+		
+		var request = {
+			method: 'POST',
+			url: path + 'queueDeleter.php',
+			data: suggestion,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}
+		$http(request).success(function() {
+			$scope.getQueue();
+		})
+		.error(function() {
+			console.log("Error when deleting");
+		});
+	}
 	
 	$scope.addLike = function(id) {
 		var suggestion = $.param({
