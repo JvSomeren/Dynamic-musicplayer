@@ -1,11 +1,14 @@
 $(document).ready(function() {
+	//Volume control event listeners
 	$("#volume-control").on("change", volumeChanger);
 	$("#control-mute").click(volumeMute);
 	
+	//Playback control event listeners
 	$("#control-prev").click(prevControl);
 	$("#control-play").click(playPauseControl);	
 	$("#control-next").click(nextControl);
 	
+	//Playback control hotkey event listeners
 	$(document).keypress(function(event) {
 		switch(event.which) {
 			case 32: //Space, Pause/Play

@@ -1,11 +1,17 @@
 app.controller('searchController', function($scope, $http) {
-	var path = 'http://localhost/barmuziek/v2/';
+	//A global variable containing the route to the current folder
+	var path = 'http://localhost:8080/barmuziek/v2/';
+	//Retrieves the current queue for the chosen playerID
 	$scope.getQueue = function() {
 		$http.get(path + "queueFetcher.php?pid=12345")
 			.success(function (response) {$scope.songs = response.records;});
 	}
 	
 	$scope.getQueue();
+	
+	//An interval of 10s when the current queue gets refreshed from the database
+	var i;
+	i = setInterval($scope.getQueue, 10000);
 	
 	//Acts as a delay for the song searcher so the API doesnt load
 	//each time a character is entered
@@ -37,6 +43,9 @@ app.controller('searchController', function($scope, $http) {
 		$scope.results = $scope.searchResults.items;
 	}
 	
+	//When the user selects a song to suggest this function gets called.
+	//It takes the url and the title of the suggestion and pushes it to
+	//the database.
 	$scope.onResultSelect = function(YTID, title) {
 		var suggestion = $.param({
 			YTID: YTID,
@@ -59,6 +68,7 @@ app.controller('searchController', function($scope, $http) {
 			});
 	};
 	
+	//Adds a like to the target song in the database
 	$scope.addLike = function(id) {
 		var suggestion = $.param({
 			id: id
@@ -78,6 +88,7 @@ app.controller('searchController', function($scope, $http) {
 		});
 	}
 	
+	//Adds a dislike to the target song in the database
 	$scope.addDislike = function(id) {
 		var suggestion = $.param({
 			id: id

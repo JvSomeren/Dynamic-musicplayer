@@ -5,6 +5,7 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+//Initializes and makes the YouTube Iframe player
 var player;
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
@@ -122,7 +123,7 @@ function playPauseControl() {
 	}
 }
 
-//Loads in the next video when the next button is pressed
+//Loads in the next video when the next button is pressed or the current video ends
 function nextControl() {
 	var scope = angular.element($("#player-container")).scope();
 		

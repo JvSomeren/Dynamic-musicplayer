@@ -6,6 +6,7 @@ function onYouTubeApiLoad() {
 	gapi.client.setApiKey('AIzaSyDVG6RZOn-SdxCuJ6tNUl5Ofv_HNsyMtns');
 }
 
+//Gets called when a search is initiated and handles the request to the YouTube API
 function search(searchRequest) {
 	var request = gapi.client.youtube.search.list({
 		part: 'snippet',
@@ -16,6 +17,7 @@ function search(searchRequest) {
 	request.execute(onSearchResponse);
 }
 
+//Handles everything when the request to YouTube get answered
 function onSearchResponse(response) {
 		var scope = angular.element($("#searchContainer")).scope();
 		
