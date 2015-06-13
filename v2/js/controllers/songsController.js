@@ -9,6 +9,8 @@ app.controller('songsController', function($scope, $http) {
 	
 	$scope.getQueue();
 	
+	$scope.currentSong = {title: 'DATA'};
+	
 	//An interval of 10s when the current queue gets refreshed from the database
 	var i;
 	i = setInterval($scope.getQueue, 10000);
@@ -34,23 +36,89 @@ app.controller('songsController', function($scope, $http) {
 	$("#control-next").click(nextControl);
 	
 	//Playback control hotkey event listeners
+	var modalOpen = false;
 	$(document).keypress(function(event) {
-		switch(event.which) {
-			case 32: //Space, Pause/Play
-				event.preventDefault();
-				playPauseControl();
-				break;
-			case 110: //n, Next
-				nextControl();
-				break;
-			case 112: //p, Previous
-				prevControl();
-				break;
-			case 109: //m, Mute
-				volumeMute();
-				break;
+		if(!modalOpen) {
+			switch(event.which) {
+				case 32: //Space, Pause/Play
+					event.preventDefault();
+					playPauseControl();
+					break;
+				case 110: //n, Next
+					nextControl();
+					break;
+				case 112: //p, Previous
+					prevControl();
+					break;
+				case 109: //m, Mute
+					volumeMute();
+					break;
+			}
 		}
 	});
+	
+	//Acts as a delay for the song searcher so the API doesnt load
+	//each time a character is entered
+	var delay = (function() {
+		var timer = 0;
+		return function(callback, ms) {
+			clearTimeout(timer);
+			timer = setTimeout(callback, ms);
+		};
+	})();
+	
+	//Handles the call of the search() function when something is entered
+	$("#search-song").keyup(function(){
+    delay(function() {
+			var searchRequest = $("#search-song").val();
+		
+			if(searchRequest != "") {
+				search(searchRequest);
+				console.log('Searched for: ', searchRequest);
+			}
+			else {
+				console.log("empty search");
+				$(".search-results").remove();
+			}
+		}, 500);
+	});
+	
+	$scope.makeSearchAnArray = function() {
+		$scope.results = $scope.searchResults.items;
+	}
+	
+	//When the modal gets triggered to open the input field is automaticly focused
+	$(".modal-trigger").leanModal({
+		ready: function() {$("#search-song").focus(); modalOpen = true;},
+		complete: function() {modalOpen = false;}
+	});
+	
+	//When the user selects a song to suggest this function gets called.
+	//It takes the url and the title of the suggestion and pushes it to
+	//the database.
+	$scope.onResultSelect = function(YTID, title) {
+		var suggestion = $.param({
+			YTID: YTID,
+			title: title.replace(/"+/g, '')
+		});
+		
+		var request = {
+			method: 'POST',
+			url: path + 'queuePusher.php',
+			data: suggestion,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}
+		$http(request).success(function() {
+				$(".search-results").remove();
+				$("#search-song").val("");
+				$("#suggest-modal").closeModal();
+				modalOpen = false;
+				$scope.getQueue();
+			})
+			.error(function() {
+				alert("Oops... Something went wrong!");
+			});
+	};
 	
 	//When a song is loaded into the player it gets removed from the database
 	$scope.removeTopFromQueue = function(id) {

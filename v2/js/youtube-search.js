@@ -19,7 +19,7 @@ function search(searchRequest) {
 
 //Handles everything when the request to YouTube get answered
 function onSearchResponse(response) {
-		var scope = angular.element($("#searchContainer")).scope();
+		var scope = angular.element($("#controllerContainer")).scope();
 		
 		scope.$apply(function() {
 			scope.searchResults = response;

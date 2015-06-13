@@ -125,10 +125,11 @@ function playPauseControl() {
 
 //Loads in the next video when the next button is pressed or the current video ends
 function nextControl() {
-	var scope = angular.element($("#player-container")).scope();
+	var scope = angular.element($("#controllerContainer")).scope();
 		
 	scope.$apply(function() {
 		var nextVideo = scope.songs[0].YTID;
+		scope.currentSong.title = scope.songs[0].title;
 		player.loadVideoById(nextVideo, "medium");
 		scope.removeTopFromQueue(scope.songs[0].id);
 	});

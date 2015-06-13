@@ -1,10 +1,14 @@
-<div id="player-container" class="container" ng-controller="songsController">
+<div id="controllerContainer" class="container" ng-controller="songsController">
 	<div class="section">
 		<div class="row">
 
 			<!-- Currently playing window -->
 			<div class="col s12 m5 l5 right">
 				<div class="card">
+					
+					<div class="card-content card-content-padding border-radius-top grey darken-2">
+						<span class="truncate song-title white-text">{{ currentSong.title }}</span>
+					</div>
 
 					<div class="card-image video-container no-controls" id="yt-player">
 						<div id="player"></div>
@@ -23,7 +27,6 @@
 						</div>
 
 						<div id="volume-wrapper">
-							<a ng-hide="true" id="control-mute" class="waves-effect waves-teal btn-flat"><i class="mdi-av-volume-up small"></i></a>
 							<p class="range-field">
 								<input id="volume-control" type="range" min="0" max="100" value="70"/>
 							</p>
@@ -32,7 +35,37 @@
 					</div>
 
 					<div class="card-action">
-						<a href="#suggest" id="suggest-song" class="waves-effect waves-teal btn-flat">Suggest song</a>
+						<a href="#suggest-modal" id="suggest-song" class="waves-effect waves-teal btn-flat modal-trigger">Suggest song</a>
+					</div>
+					
+					<div id="suggest-modal" class="modal">
+						<div class="modal-content">
+						
+							<div class="card">
+								<div class="card-content card-content-padding">
+									<span class="card-title grey-text text-darken-4">Suggest a song</span>
+									<span class="right pointer-cursor" onclick="$('#suggest-modal').closeModal()"><i class="mdi-content-clear small"></i></span>
+								</div>
+								<div class="card-action">
+									<div class="input-field">
+										<i class="mdi-action-search prefix"></i>
+										<input type="text" id="search-song">
+										<label style="margin-left: 2.5rem" for="search-song">Song title</label>
+									</div>
+								</div>
+								<div class="divider"></div>
+								<div class="card-content search-container">
+
+									<div class="search-results" ng-repeat="result in results" ng-click="onResultSelect(result.id.videoId, result.snippet.title)">
+										<span class="truncate grey-text text-darken-4 animate-repeat song-title">{{ result.snippet.title }}</span>
+										<p class="truncate animate-repeat">Uploaded by {{ result.snippet.channelTitle }}</p>
+										<div class="divider divider-results animate-repeat" ng-if="!$last"></div>
+									</div>
+
+								</div>
+							</div>
+							
+						</div>
 					</div>
 
 				</div>

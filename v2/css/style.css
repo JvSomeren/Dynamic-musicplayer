@@ -21,7 +21,10 @@ body {
 	width: 90% !important;
 }
 
-/*   */
+/* song-card.html */
+.border-radius-top {
+	border-radius: 2px 2px 0 0 !important;
+}
 .icon-block {
   padding: 0 15px;
 }
@@ -31,6 +34,7 @@ body {
 
 .player-content {
 	padding-top: 10px !important;
+	padding-bottom: 10px !important;
 }
 
 .progress-container {
@@ -46,6 +50,22 @@ body {
 }
 
 .card-action {
+	padding: 10px 20px !important;
+}
+
+.modal {
+	width: 95% !important;
+}
+
+.modal .modal-content {
+	padding: 0 !important;
+}
+
+.modal .modal-content .card {
+	margin: 0 !important;
+}
+
+.card-content-padding {
 	padding: 10px 20px !important;
 }
 
