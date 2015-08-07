@@ -1,6 +1,6 @@
 app.controller('searchController', function($scope, $http) {
 	//A global variable containing the route to the current folder
-	var path = 'http://localhost:8080/barmuziek/v2/';
+	var path = 'http://localhost/barmuziek/v2/';
 	//Retrieves the current queue for the chosen playerID
 	$scope.getQueue = function() {
 		$http.get(path + "queueFetcher.php?pid=12345")

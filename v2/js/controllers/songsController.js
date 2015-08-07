@@ -1,6 +1,6 @@
 app.controller('songsController', function($scope, $http) {
 	//A global variable containing the route to the current folder
-	var path = 'http://localhost:8080/barmuziek/v2/';
+	var path = 'http://localhost/barmuziek/v2/';
 	//Retrieves the current queue for the chosen playerID
 	$scope.getQueue = function() {
 		$http.get(path + "queueFetcher.php?pid=12345")
@@ -143,7 +143,9 @@ app.controller('songsController', function($scope, $http) {
 	//Adds a like to the target song in the database
 	$scope.addLike = function(id) {
 		var suggestion = $.param({
-			id: id
+			userId: 1,
+			pid: 12345,
+			songId: id
 		});
 		
 		var request = {
@@ -152,7 +154,8 @@ app.controller('songsController', function($scope, $http) {
 			data: suggestion,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}
-		$http(request).success(function() {
+		$http(request).success(function(response) {
+			alert(response);
 			$scope.getQueue();
 		})
 		.error(function() {
